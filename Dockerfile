@@ -20,8 +20,10 @@ RUN useradd -m appuser && \
     chown -R appuser:appuser /app
 USER appuser
 
-# Copy the application code
-COPY --chown=appuser:appuser . .
+# Copy the application code (excluding .env file)
+COPY --chown=appuser:appuser app.py .
+COPY --chown=appuser:appuser templates/ templates/
+COPY --chown=appuser:appuser static/ static/
 
 # Set environment variables
 ENV FLASK_APP=app.py
