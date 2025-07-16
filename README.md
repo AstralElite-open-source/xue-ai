@@ -1,4 +1,4 @@
-read about this project - https://blog.astralelite.org/post/XUE_AI_BLOG
+read about this project - https://blog.astralelite.org
 
 # Installation Guide
 
