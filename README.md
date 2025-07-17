@@ -12,6 +12,9 @@ Crete .env file
 ```text
 GOOGLE_API_KEY=your gemini api
 ```
+```bash
+python app.py
+```
 
 ## Docker Image Build  Run & stop Guide - make sure you setup .env file with gemini api
 
