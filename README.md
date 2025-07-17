@@ -1,5 +1,12 @@
 read about this project - https://blog.astralelite.org
 
+## Direct Run - Container
+visit and get api - https://aistudio.google.com/app/apikey
+```bash
+docker run -p 8080:8000 --name xue-ai -e GOOGLE_API_KEY=... -d ghcr.io/astralelite-open-source/xue-ai:v1.0.0
+```
+http://localhost:8080
+
 # Installation Guide
 
 ```bash
@@ -15,12 +22,6 @@ GOOGLE_API_KEY=your gemini api
 ```bash
 python app.py
 ```
-## Direct Run - Container
-visit and get api - https://aistudio.google.com/app/apikey
-```bash
-docker run -p 8080:8000 --name xue-ai -e GOOGLE_API_KEY=... -d ghcr.io/astralelite-open-source/xue-ai:v1.0.0
-```
-http://localhost:8080
 ## Docker Image Build  Run & stop Guide - make sure you setup .env file with gemini api
 
 ```bash
