@@ -36,3 +36,10 @@ http://localhost:8080
 ```bash
 docker stop xue-ai   # running container will stop
 ```
+# Join our community
+
+- Discord - https://discord.gg/gPe5MMYpz9
+
+- x - https://x.com/AstralEliteHQ
+
+- Email - hi@AstralElite.org
