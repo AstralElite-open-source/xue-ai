@@ -22,7 +22,10 @@ python app.py
 docker build -t xue-ai:latest .
 ```
 ```bash
-docker run -d -p 3000:3000 --name xue-ai xue-ai:latest
+docker run -d -p 8080:8080 --name xue-ai xue-ai:latest
+```
+```bash
+http://localhost:8080
 ```
 ```bash
 docker stop xue-ai   # running container will stop
