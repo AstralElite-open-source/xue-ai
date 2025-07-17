@@ -8,7 +8,7 @@ git clone https://github.com/AstralElite-open-source/xue-ai.git
 ```bash
 pip install -r requirements.txt
 ```
-Crete .env file
+Create .env file
 ```text
 GOOGLE_API_KEY=your gemini api
 ```
