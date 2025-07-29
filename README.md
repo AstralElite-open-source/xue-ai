@@ -1,5 +1,4 @@
-read about this project - https://blog.astralelite.org
-
+read about this project - https://blog.astralelite.org/post/XUE_AI_BLOG
 ## Direct Run - Container - v1.0.1
 visit and get api - https://aistudio.google.com/app/apikey
 ```bash
