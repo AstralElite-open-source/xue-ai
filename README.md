@@ -1,8 +1,8 @@
 read about this project - https://blog.astralelite.org/post/XUE_AI_BLOG
-## Direct Run - Container - v1.0.1
+## Direct Run - Container - v1.0.2
 visit and get api - https://aistudio.google.com/app/apikey
 ```bash
-docker run -p 8080:8080 --name xue-ai -e GOOGLE_API_KEY=... -d ghcr.io/astralelite-open-source/xue-ai:v1.0.1
+docker run -p 8080:8080 --name xue-ai -e GOOGLE_API_KEY=... -d ghcr.io/astralelite-open-source/xue-ai:v1.0.2
 ```
 http://localhost:8080
 
