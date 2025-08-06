@@ -1,35 +1,56 @@
-FROM python:3.13-slim
-
-# Set working directory
+# ---- Builder Stage ----
+# This stage builds the Python environment with all dependencies.
+FROM python:3.12-slim AS builder
 WORKDIR /app
 
-# Install system dependencies
+# Install build dependencies needed for compiling packages like gevent
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    build-essential \
-    curl && \
+    apt-get install -y --no-install-recommends build-essential gcc libffi-dev libssl-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first to leverage Docker cache
+# Create and activate a virtual environment
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Upgrade pip and install all packages into the venv
+RUN pip install --upgrade pip setuptools wheel
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Create a non-root user
+
+# ---- Final Stage ----
+# This stage creates the final, lean image.
+FROM python:3.12-slim
+WORKDIR /app
+
+# Install runtime dependencies (curl for healthcheck)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy the virtual environment from the builder stage
+COPY --from=builder /opt/venv /opt/venv
+
+# Create a non-root user for security
 RUN useradd -m appuser && \
     chown -R appuser:appuser /app
-USER appuser
 
-# Copy the application code (excluding .env file)
-COPY --chown=appuser:appuser app.py .
-COPY --chown=appuser:appuser templates/ templates/
-COPY --chown=appuser:appuser static/ static/
+# Copy application code as the non-root user
+COPY --chown=appuser:appuser . .
+
+# Activate the virtual environment
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Set environment variables
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
 ENV PORT=8080
 ENV HOST=0.0.0.0
+
+# Switch to the non-root user
+USER appuser
 
 # Expose port
 EXPOSE 8080
